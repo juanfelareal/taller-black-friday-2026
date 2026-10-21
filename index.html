@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Black Friday 2026 — Taller para clientes | LA REAL</title>
+<meta property="og:title" content="Black Friday 2026 — Taller para clientes | LA REAL" />
+<meta property="og:description" content="Cómo preparar la oferta, la tienda, la pauta y los correos para Black Friday, y qué hacer después." />
+<meta property="og:image" content="https://juanfelareal.github.io/taller-black-friday-2026/og-image.jpg" />
+<meta property="og:url" content="https://juanfelareal.github.io/taller-black-friday-2026/" />
+<meta property="og:type" content="website" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<link rel="icon" type="image/png" href="assets/iso.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+/* ============ Tokens (iguales a la landing) ============ */
+:root{
+  --bg:#F3F1ED; --surface:#FBFAF8; --ink:#121212; --ink-2:#3A3A3A; --muted:#7A7772;
+  --line:rgba(18,18,18,.09); --line-2:rgba(18,18,18,.16);
+  --dark:#121314; --dark-2:#1C1D1F; --on-dark:#F3F1ED; --on-dark-muted:#8E8C88; --on-dark-2:#C9C6C0;
+  --accent:#44BF47;
+  --sans:'Inter Tight',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+}
+/* La diapositiva se diseña sobre un lienzo de 1920x1080 donde 1rem = 16px.
+   En pantalla el rem escala para que el lienzo quepa completo (16:9). */
+html{font-size:min(calc(100vw / 120), calc(100vh / 67.5));}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#0c0c0d;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;overflow:hidden;}
+img{display:block;max-width:100%;}
+
+/* ============ Diapositiva ============ */
+.deck{width:100vw;height:100vh;display:grid;place-items:center;}
+.slide{position:relative;width:120rem;height:67.5rem;overflow:hidden;background:var(--bg);
+  padding:9.4rem 7.5rem 6.9rem;display:none;flex-direction:column;}
+.slide.active{display:flex;}
+.slide.dark{background:var(--dark);color:var(--on-dark);}
+.slide.center{justify-content:center;}
+.top{position:absolute;top:3.5rem;left:7.5rem;right:7.5rem;display:flex;justify-content:space-between;align-items:center;}
+.brand{display:flex;align-items:center;gap:.9rem;font-weight:600;font-size:1.5rem;letter-spacing:-.01em;}
+.brand img{width:2.1rem;height:2.1rem;}
+.dark .brand img{filter:invert(1) brightness(2);}
+.pagenum{font-family:var(--mono);font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);}
+.dark .pagenum{color:var(--on-dark-muted);}
+
+/* ============ Tipografía ============ */
+.label{font-family:var(--mono);font-size:1.125rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.75rem;}
+.dark .label{color:var(--on-dark-muted);}
+.dot{width:.65rem;height:.65rem;border-radius:50%;background:var(--accent);display:inline-block;flex:none;}
+.h1{font-size:7.5rem;line-height:1;letter-spacing:-.04em;font-weight:300;margin-top:1.6rem;}
+.h2{font-size:4.75rem;line-height:1.04;letter-spacing:-.035em;font-weight:300;margin-top:1.25rem;max-width:88rem;}
+.h1 b,.h2 b{font-weight:600;}
+.soft{color:var(--muted);}
+.dark .soft{color:var(--on-dark-muted);}
+.lead{font-size:1.875rem;line-height:1.5;color:var(--ink-2);max-width:61rem;margin-top:1.75rem;}
+.dark .lead{color:var(--on-dark-2);}
+.small{font-size:1.25rem;color:var(--muted);line-height:1.5;}
+.brandname{font-weight:600;font-style:italic;}
+
+/* ============ Componentes ============ */
+.pills{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:2rem;}
+.pill{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1.25rem;border-radius:999px;border:2px solid var(--line-2);background:var(--surface);font-size:1.25rem;color:var(--ink-2);}
+.dark .pill{background:transparent;border-color:rgba(243,241,237,.2);color:var(--on-dark);}
+.grid{display:grid;gap:1.25rem;}
+.g2{grid-template-columns:repeat(2,1fr);} .g3{grid-template-columns:repeat(3,1fr);} .g4{grid-template-columns:repeat(4,1fr);}
+.push{margin-top:auto;}
+.card{background:var(--surface);border:2px solid var(--line);border-radius:1.75rem;padding:2.5rem;}
+.dark .card{background:var(--dark-2);border-color:var(--dark-2);}
+.card .k{font-family:var(--mono);font-size:1rem;color:var(--muted);}
+.card h3{font-size:2rem;font-weight:500;letter-spacing:-.02em;margin-top:.9rem;line-height:1.15;}
+.card p{font-size:1.375rem;color:var(--ink-2);margin-top:.6rem;line-height:1.45;}
+.dark .card p{color:var(--on-dark-2);}
+.list{border-top:2px solid var(--line);list-style:none;}
+.list li{display:grid;grid-template-columns:1.75rem 1fr;gap:.9rem;padding:1.1rem 0;border-bottom:2px solid var(--line);font-size:1.6rem;font-weight:500;letter-spacing:-.01em;}
+.list li::before{content:"";width:.65rem;height:.65rem;border-radius:50%;background:var(--accent);margin-top:.7rem;}
+.list li span{display:block;font-size:1.3rem;font-weight:400;color:var(--ink-2);margin-top:.25rem;}
+.cols{display:grid;grid-template-columns:repeat(2,1fr);column-gap:4.4rem;}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);}
+.steps.s3{grid-template-columns:repeat(3,1fr);} .steps.s5{grid-template-columns:repeat(5,1fr);}
+.step{border-top:2px solid var(--ink);padding:1.4rem 2rem 0 0;}
+.dark .step{border-color:var(--on-dark);}
+.step .k{font-family:var(--mono);font-size:1rem;color:var(--muted);}
+.step h3{font-size:2rem;font-weight:500;letter-spacing:-.02em;margin-top:1.4rem;}
+.step p{font-size:1.3rem;color:var(--ink-2);margin-top:.6rem;line-height:1.45;}
+.dark .step p{color:var(--on-dark-2);}
+.note{padding:1.25rem 1.5rem;border-radius:1rem;background:var(--surface);border:2px solid var(--line);border-left:4px solid var(--accent);font-size:1.3rem;color:var(--ink-2);}
+
+/* Cifras y respaldo */
+.stat{border-top:2px solid currentColor;padding-top:1.5rem;}
+.stat .n{font-size:9.4rem;font-weight:300;letter-spacing:-.05em;line-height:1;}
+.stat .t{font-size:1.6rem;color:var(--ink-2);margin-top:.75rem;}
+.dark .stat .t{color:var(--on-dark-2);}
+.partner{display:flex;align-items:center;gap:1.6rem;padding:2.1rem 2.4rem;}
+.partner .ok{width:4rem;height:4rem;border-radius:50%;border:3px solid var(--accent);display:grid;place-items:center;flex:none;}
+.partner b{display:block;font-size:2.4rem;font-weight:600;letter-spacing:-.02em;}
+.partner span{font-size:1.3rem;color:var(--on-dark-muted);}
+
+/* Equipo */
+.team{display:flex;flex-wrap:wrap;justify-content:center;gap:1.9rem 1.4rem;}
+.team .member{width:calc((100% - 4 * 1.4rem) / 5);}
+.member .ph{border-radius:1.25rem;overflow:hidden;aspect-ratio:4/5;background:var(--surface);}
+.member .ph img{width:100%;height:100%;object-fit:cover;}
+.member b{display:block;font-size:1.5rem;font-weight:600;margin-top:.9rem;letter-spacing:-.01em;}
+.member span{display:block;font-size:1.125rem;color:var(--muted);}
+
+/* Logos */
+.logos{display:grid;grid-template-columns:repeat(6,1fr);row-gap:2.75rem;align-items:center;padding:3.5rem 2.5rem;}
+.logos div{height:4.4rem;display:flex;align-items:center;justify-content:center;}
+.logos img{height:calc(var(--s,1) * 2.5rem);width:auto;max-width:80%;object-fit:contain;filter:brightness(0);opacity:.62;}
+.logos img.gray{filter:grayscale(1) contrast(1.1);opacity:.75;}
+.logos .txt{font-weight:600;font-size:1.4rem;letter-spacing:.14em;text-transform:uppercase;opacity:.6;}
+
+/* Oferta (como la tarjeta de servicio de la landing) */
+.price{display:flex;justify-content:space-between;align-items:baseline;gap:1.25rem;padding:1.4rem 0;border-bottom:2px solid var(--line);font-size:1.6rem;}
+.dark .price{border-color:rgba(243,241,237,.1);}
+.price .l{color:var(--ink-2);}
+.dark .price .l{color:var(--on-dark-2);}
+.price .v{font-size:2.1rem;font-weight:500;font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;}
+.price .v i{font-style:normal;font-size:1.1rem;font-weight:400;color:var(--muted);}
+.price .v small{display:block;font-size:1.1rem;font-weight:400;color:var(--muted);}
+.price .v.strike{text-decoration:line-through;color:var(--muted);}
+.big{font-size:5.5rem;font-weight:400;letter-spacing:-.035em;line-height:1;}
+.big small{display:block;font-size:1.4rem;letter-spacing:0;color:var(--on-dark-2);margin-top:.75rem;}
+.save{display:inline-flex;align-items:center;gap:.6rem;padding:.5rem 1rem;border-radius:999px;background:#E3F3E4;color:#1E7A30;font-family:var(--mono);font-size:1rem;letter-spacing:.08em;text-transform:uppercase;}
+.perk{border-radius:1.4rem;padding:1.9rem 2rem;background:var(--surface);border:2px solid var(--line);}
+.card .perk{background:var(--bg);border:0;}
+.dark .perk{background:var(--dark-2);border-color:var(--dark-2);}
+.perk .label{color:var(--ink);margin-bottom:.6rem;}
+.dark .perk .label{color:var(--on-dark);}
+.perk p{font-size:1.45rem;line-height:1.45;color:var(--ink-2);}
+.dark .perk p{color:var(--on-dark-2);}
+.perk .worth{margin-top:1rem;padding-top:.9rem;border-top:2px solid var(--line);font-size:1.25rem;color:var(--muted);}
+.perk .worth b{color:var(--ink);font-weight:600;}
+.dark .perk .worth b{color:var(--on-dark);}
+.tier{display:flex;flex-direction:column;}
+.tier.rec{border:3px solid var(--accent);}
+.rec-tag{align-self:flex-start;font-family:var(--mono);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;background:#E3F3E4;color:var(--ink);padding:.35rem .8rem;border-radius:999px;margin-bottom:1rem;}
+.tier .who{font-size:1.25rem;color:var(--muted);font-style:italic;margin-top:.3rem;}
+.tier .amt{font-size:3.4rem;font-weight:400;letter-spacing:-.03em;margin-top:1.4rem;font-variant-numeric:tabular-nums;}
+.tier .amt i{font-style:normal;font-size:1.2rem;color:var(--muted);letter-spacing:0;}
+.tier .unit{font-size:1.3rem;color:var(--ink-2);margin-top:.3rem;}
+
+/* Trabajo real: navegador + celular */
+.stage{border-radius:2rem;background:linear-gradient(160deg,#E8E5DF,#DEDAD2);padding:2.5rem 3rem 0;position:relative;overflow:hidden;}
+.browser{border-radius:.75rem .75rem 0 0;overflow:hidden;background:#fff;outline:2px solid rgba(18,18,18,.06);}
+.browser .bar{display:flex;align-items:center;gap:.45rem;height:2rem;padding:0 .9rem;background:#F6F5F2;border-bottom:1px solid rgba(18,18,18,.06);}
+.browser .bar i{width:.55rem;height:.55rem;border-radius:50%;background:#D6D2CB;}
+.browser .bar span{margin-left:.6rem;height:1.1rem;line-height:1.1rem;padding:0 .6rem;border-radius:999px;background:#ECEAE5;font-family:var(--mono);font-size:.65rem;color:var(--muted);}
+.browser img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;}
+.phone{position:absolute;right:2.5rem;bottom:-3.5rem;width:22%;border-radius:1.75rem;border:.45rem solid #121212;background:#121212;overflow:hidden;aspect-ratio:9/19;}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:1.3rem;}
+.tile{border-radius:1.6rem;overflow:hidden;aspect-ratio:9/16;background:#DEDAD2;}
+.tile img{width:100%;height:100%;object-fit:cover;}
+
+/* ============ Navegación (solo pantalla) ============ */
+.nav{position:fixed;right:1.75rem;bottom:1.75rem;display:flex;align-items:center;gap:.75rem;z-index:10;font-family:var(--mono);font-size:13px;color:#8E8C88;}
+.nav button{width:42px;height:42px;border-radius:50%;border:1px solid rgba(243,241,237,.2);background:rgba(18,19,20,.7);color:#F3F1ED;font-size:18px;cursor:pointer;backdrop-filter:blur(8px);}
+.nav button:disabled{opacity:.3;cursor:default;}
+.progress{position:fixed;left:0;top:0;height:3px;background:var(--accent);transition:width .3s ease;z-index:10;}
+
+/* ============ Móvil: scroll vertical, todo en una columna ============ */
+@media (max-width:768px), (orientation:portrait) and (max-width:1024px){
+  html{font-size:9px;}
+  body{background:var(--bg);overflow:auto;}
+  .deck{display:block;width:auto;height:auto;}
+  .slide{display:flex !important;width:auto;height:auto;min-height:0;padding:9rem 2.2rem 6rem;border-bottom:1px solid var(--line);}
+  .top{left:2.2rem;right:2.2rem;top:2.5rem;}
+  .h1{font-size:5.6rem;} .h2{font-size:4rem;} .lead{font-size:2rem;}
+  .g2,.g3,.g4,.cols,.steps,.steps.s3,.steps.s5{grid-template-columns:1fr;}
+  .team .member{width:calc((100% - 2 * 1.4rem) / 3);}
+  .logos{grid-template-columns:repeat(3,1fr);}
+  .stat .n{font-size:7rem;}
+  .split{grid-template-columns:1fr !important;}
+  .push{margin-top:3rem;}
+  .phone{display:none;}
+  .nav,.progress{display:none;}
+  .card p,.list li span,.step p,.perk p{font-size:1.8rem;}
+}
+
+/* ============ PDF (Imprimir → Guardar como PDF, o Playwright page.pdf 1920x1080) ============ */
+@page{size:1920px 1080px;margin:0;}
+@media print{
+  html{font-size:16px;}
+  body{background:var(--bg);overflow:visible;}
+  .deck{display:block;width:auto;height:auto;}
+  .slide{display:flex !important;break-after:page;page-break-after:always;}
+  .nav,.progress{display:none;}
+  *{box-shadow:none !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<main class="deck" id="deck">
+
+  <!-- 01 PORTADA -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <div class="grid split" style="grid-template-columns:1.25fr 1fr;gap:5rem;flex:1;align-items:center">
+      <div>
+        <p class="label"><span class="dot"></span>Taller para clientes · Octubre 2026</p>
+        <h1 class="h1">Black Friday se gana <b>antes de noviembre.</b></h1>
+        <p class="lead">Cómo preparar la oferta, la tienda, la pauta y los correos para la semana más grande del año, y qué hacer después para que las ventas no se queden en un fin de semana.</p>
+        <div class="pills"><span class="pill"><span class="dot"></span>Black Friday · viernes 27 nov</span><span class="pill">Cyber Monday · lunes 30 nov</span></div>
+      </div>
+      <div style="height:100%;min-height:30rem;border-radius:2rem;overflow:hidden;position:relative">
+        <img src="assets/juanfe-escenario.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:50% 25%;filter:grayscale(1) contrast(1.05)">
+        <span class="pill" style="position:absolute;left:1.4rem;bottom:1.4rem"><span class="dot"></span>Juan Felipe León · Fundador</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 QUIÉNES SOMOS -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Quiénes somos</p>
+    <h2 class="h2">Somos LA REAL. Hacemos crecer <b>marcas de ecommerce</b> <span class="soft">con datos, no con suposiciones.</span></h2>
+    <p class="lead">Somos una agencia de ecommerce de Medellín. Hacemos sitios en Shopify, pauta, contenido y email marketing para marcas líderes en Colombia y el mundo. Todo lo llevamos en Orbit, nuestra plataforma propia, y somos pioneros en herramientas integradas con inteligencia artificial.</p>
+    <div class="grid g3 push">
+      <div class="card"><span class="k">01</span><h3>Medimos</h3><p>Antes de mover algo revisamos tus números: ventas, margen, inversión en pauta y conversión.</p></div>
+      <div class="card"><span class="k">02</span><h3>Decidimos</h3><p>Cada acción tiene una razón en los datos y un indicador para saber si funcionó.</p></div>
+      <div class="card"><span class="k">03</span><h3>Ejecutamos y ajustamos</h3><p>Revisamos resultados cada semana. Lo que funciona crece; lo que no, se corta.</p></div>
+    </div>
+  </section>
+
+  <!-- 03 RESPALDO -->
+  <section class="slide dark">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Nuestro respaldo</p>
+    <h2 class="h2">Más de una década <b>haciendo crecer ecommerce.</b></h2>
+    <div class="grid g3" style="margin-top:4.4rem;gap:3.75rem">
+      <div class="stat"><div class="n">+11</div><div class="t">años de experiencia en ecommerce</div></div>
+      <div class="stat"><div class="n">+200</div><div class="t">marcas acompañadas en el mundo</div></div>
+      <div class="stat"><div class="n">+5</div><div class="t">países donde hemos operado</div></div>
+    </div>
+    <div class="grid g2 push">
+      <div class="card partner"><span class="ok"><svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#44BF47" stroke-width="1.6"><path d="M3.5 8.5l3 3 6-7"/></svg></span><div><b>Shopify Partner</b><span>Tiendas y sitios en Shopify</span></div></div>
+      <div class="card partner"><span class="ok"><svg width="26" height="26" viewBox="0 0 16 16" fill="none" stroke="#44BF47" stroke-width="1.6"><path d="M3.5 8.5l3 3 6-7"/></svg></span><div><b>Meta Partner</b><span>Pauta en Facebook e Instagram</span></div></div>
+    </div>
+  </section>
+
+  <!-- 04 EQUIPO -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <div class="grid split" style="grid-template-columns:.8fr 1.45fr;gap:5rem;flex:1;align-items:center">
+      <div>
+        <p class="label"><span class="dot"></span>Nuestro equipo</p>
+        <h2 class="h2" style="font-size:5.25rem">El equipo que va a estar <b>detrás de tu Black Friday.</b></h2>
+        <p class="lead">Estrategia, pauta, Shopify, diseño, contenido y fidelización en un solo equipo, con un líder para cada frente.</p>
+      </div>
+      <div class="team" id="team"></div>
+    </div>
+  </section>
+
+  <!-- 05 MARCAS -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Marcas con las que trabajamos</p>
+    <h2 class="h2">Más de 200 marcas <b>han confiado en nosotros.</b></h2>
+    <div class="card logos push" id="logos"></div>
+  </section>
+
+  <!-- 06 AGENDA -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Agenda del taller</p>
+    <h2 class="h2">Seis frentes para preparar <b>en las próximas cinco semanas.</b></h2>
+    <div class="grid g3 push">
+      <div class="card"><span class="k">01</span><h3>El calendario</h3><p>Por qué Black Friday ya es una temporada y qué toca en cada fase.</p></div>
+      <div class="card"><span class="k">02</span><h3>La oferta</h3><p>Qué tipo de oferta elegir y cómo hacer las cuentas antes de bajar precios.</p></div>
+      <div class="card"><span class="k">03</span><h3>La tienda</h3><p>Lo que debe estar listo en Shopify para que nada falle cuando llegue el tráfico.</p></div>
+      <div class="card"><span class="k">04</span><h3>La pauta</h3><p>Cómo calentar audiencias antes y en qué invertir durante la Black Week.</p></div>
+      <div class="card"><span class="k">05</span><h3>Email y WhatsApp</h3><p>La secuencia de mensajes que más vende: tu propia lista de clientes.</p></div>
+      <div class="card"><span class="k">06</span><h3>Después del viernes</h3><p>Cómo convertir a los compradores de Black Friday en clientes que vuelven.</p></div>
+    </div>
+  </section>
+
+  <!-- 07 SEPARADOR 01 -->
+  <section class="slide dark center">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>01 · El calendario</p>
+    <h1 class="h1">Black Friday ya no es un día. <b>Es una temporada.</b></h1>
+    <p class="lead">Las marcas que mejor venden ese viernes empezaron a prepararse semanas antes. El cliente llega con la decisión casi tomada.</p>
+  </section>
+
+  <!-- 08 FASES -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Las cuatro fases</p>
+    <h2 class="h2">Cada fase tiene <b>un objetivo distinto.</b></h2>
+    <div class="steps push">
+      <div class="step"><span class="k">01 · Hasta el 8 nov</span><h3>Preparar</h3><p>Definir la oferta con números, revisar inventario, ajustar la tienda y producir los creativos.</p></div>
+      <div class="step"><span class="k">02 · 9 al 22 nov</span><h3>Calentar</h3><p>Contenido que genere deseo, crecer la lista de espera y construir audiencias para remarketing.</p></div>
+      <div class="step"><span class="k">03 · 23 al 30 nov</span><h3>Black Week</h3><p>Acceso anticipado para la lista el lunes 23, apertura el viernes 27 y cierre con Cyber Monday el 30.</p></div>
+      <div class="step"><span class="k">04 · Diciembre</span><h3>Retener</h3><p>Segunda compra, regalos de Navidad y aprendizajes para el próximo año.</p></div>
+    </div>
+  </section>
+
+  <!-- 09 SEPARADOR 02 -->
+  <section class="slide dark center">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>02 · La oferta</p>
+    <h1 class="h1">Antes de bajar el precio, <b>haz las cuentas.</b></h1>
+  </section>
+
+  <!-- 10 TIPOS DE OFERTA -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Tipos de oferta</p>
+    <h2 class="h2">No todo tiene que ser <b>un descuento en porcentaje.</b></h2>
+    <ul class="list cols push">
+      <li><div>Descuento directo<span>Simple de entender. Úsalo en productos con buen margen, no en toda la tienda.</span></div></li>
+      <li><div>Kits y bundles<span>Juntas productos que se usan juntos. Sube el ticket y protege el margen.</span></div></li>
+      <li><div>Escalonado por compra<span>"Más compras, más ahorras": 10% en uno, 20% en dos, 30% en tres.</span></div></li>
+      <li><div>Regalo desde un monto<span>Un producto de regalo o envío gratis a partir de cierto valor de compra.</span></div></li>
+      <li><div>Acceso anticipado<span>La lista de espera compra primero. Premia a quien se registró y llena la semana.</span></div></li>
+      <li><div>Edición limitada<span>Un producto o empaque que solo existe esa semana. Urgencia sin regalar margen.</span></div></li>
+    </ul>
+  </section>
+
+  <!-- 11 LAS CUENTAS -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Las cuentas</p>
+    <h2 class="h2">Un 20% de descuento puede <b>borrar dos tercios de tu utilidad.</b></h2>
+    <div class="grid split push" style="grid-template-columns:1fr 1fr 1fr;gap:1.75rem;align-items:end">
+      <div class="card">
+        <p class="label">Precio normal</p>
+        <div style="margin-top:1.1rem;border-top:2px solid var(--line)">
+          <div class="price"><span class="l">Precio de venta</span><span class="v">$100.000</span></div>
+          <div class="price"><span class="l">Costo del producto</span><span class="v">−$35.000</span></div>
+          <div class="price"><span class="l">Envío y pasarela de pagos</span><span class="v">−$15.000</span></div>
+          <div class="price"><span class="l">Pauta por venta</span><span class="v">−$20.000</span></div>
+          <div class="price" style="border:0"><span class="l"><b>Te queda</b></span><span class="v"><b>$30.000</b></span></div>
+        </div>
+      </div>
+      <div class="card tier rec">
+        <p class="label">Con 20% de descuento</p>
+        <div style="margin-top:1.1rem;border-top:2px solid var(--line)">
+          <div class="price"><span class="l">Precio de venta</span><span class="v">$80.000</span></div>
+          <div class="price"><span class="l">Costo del producto</span><span class="v">−$35.000</span></div>
+          <div class="price"><span class="l">Envío y pasarela de pagos</span><span class="v">−$15.000</span></div>
+          <div class="price"><span class="l">Pauta por venta</span><span class="v">−$20.000</span></div>
+          <div class="price" style="border:0"><span class="l"><b>Te queda</b></span><span class="v"><b>$10.000</b></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="stat"><div class="n">3x</div><div class="t">más ventas necesitas para ganar lo mismo que en un día normal.</div></div>
+        <p class="note" style="margin-top:2rem">Por eso preferimos ofertas que suben el ticket (kits, escalonados, regalos desde un monto) y descuentos fuertes solo donde el margen lo aguanta.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 SEPARADOR 03 -->
+  <section class="slide dark center">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>03 · La tienda</p>
+    <h1 class="h1">El tráfico más caro del año <b>no puede caer en una tienda a medias.</b></h1>
+  </section>
+
+  <!-- 13 CHECKLIST TIENDA -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Checklist de la tienda</p>
+    <h2 class="h2">Lo que debe estar listo <b>antes del 23 de noviembre.</b></h2>
+    <ul class="list cols push">
+      <li><div>Velocidad y apps<span>Quitar apps que no se usan y revisar que la tienda cargue rápido en celular.</span></div></li>
+      <li><div>Precios y descuentos cargados<span>Precios tachados y códigos programados con anticipación, probados en el carrito.</span></div></li>
+      <li><div>Banners y barra de anuncios<span>Portada, colección de Black Friday y conteo regresivo. Los diseñamos nosotros: tú apruebas.</span></div></li>
+      <li><div>Inventario revisado<span>Unidades suficientes de lo que más se vende y productos agotados fuera de la colección.</span></div></li>
+      <li><div>Checkout probado<span>Una compra de prueba con cada medio de pago, incluido pago contraentrega si lo usas.</span></div></li>
+      <li><div>Envíos y cambios claros<span>Tiempos de entrega reales en la página de producto y en el checkout.</span></div></li>
+      <li><div>Captura de la lista de espera<span>Formulario o pop-up para registrarse al acceso anticipado.</span></div></li>
+      <li><div>Atención lista<span>Respuestas preparadas para las preguntas más comunes y quién atiende ese fin de semana.</span></div></li>
+    </ul>
+  </section>
+
+  <!-- 14 SEPARADOR 04 -->
+  <section class="slide dark center">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>04 · La pauta</p>
+    <h1 class="h1">En noviembre la pauta se encarece. <b>La audiencia se construye antes.</b></h1>
+  </section>
+
+  <!-- 15 PAUTA POR FASE -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Pauta por fase</p>
+    <h2 class="h2">Primero deseo, <b>después oferta.</b></h2>
+    <div class="steps s3 push">
+      <div class="step"><span class="k">01 · 9 al 22 nov</span><h3>Calentar</h3><p>Video y UGC que muestren el producto en uso. Campañas para crecer la lista de espera. Todavía sin hablar de descuento.</p></div>
+      <div class="step"><span class="k">02 · 23 al 30 nov</span><h3>Vender</h3><p>Subir presupuesto en lo que ya funciona, creativos con la oferta clara y remarketing a quienes vieron, visitaron o dejaron el carrito.</p></div>
+      <div class="step"><span class="k">03 · Diciembre</span><h3>Extender</h3><p>Última oportunidad, regalos de Navidad y fechas límite de envío. No apagar todo el lunes 30.</p></div>
+    </div>
+    <p class="note" style="margin-top:3rem">Los cambios de presupuesto se hacen sobre campañas con historial. Lanzar todo nuevo el mismo viernes es apostar sin datos.</p>
+  </section>
+
+  <!-- 16 CREATIVOS -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Creativos</p>
+    <h2 class="h2">Variedad de formatos, <b>no veinte versiones del mismo banner.</b></h2>
+    <div class="grid g4 push">
+      <div class="card"><span class="k">Calentar</span><h3>Video y UGC</h3><p>Una persona real usando el producto. Genera deseo antes de que exista la oferta.</p></div>
+      <div class="card"><span class="k">Calentar</span><h3>Prueba social</h3><p>Reseñas y testimonios de clientes. Quita dudas a quien todavía no te conoce.</p></div>
+      <div class="card"><span class="k">Vender</span><h3>Oferta clara</h3><p>Qué ganas, hasta cuándo y cómo se compra. Se entiende en dos segundos.</p></div>
+      <div class="card"><span class="k">Vender</span><h3>Urgencia real</h3><p>Conteo regresivo, unidades limitadas o última llamada. Solo si es verdad.</p></div>
+    </div>
+    <p class="note" style="margin-top:2rem">Nuestros clientes de pauta tienen 15 piezas gráficas al mes incluidas. Para Black Friday las planeamos desde ya.</p>
+  </section>
+
+  <!-- 17 SEPARADOR 05 -->
+  <section class="slide dark center">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>05 · Email y WhatsApp</p>
+    <h1 class="h1">Tu lista de clientes <b>es el canal que no le pagas a nadie.</b></h1>
+  </section>
+
+  <!-- 18 SECUENCIA -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>La secuencia</p>
+    <h2 class="h2">Ocho mensajes <b>en dos semanas.</b></h2>
+    <div class="steps push">
+      <div class="step"><span class="k">9 al 20 nov</span><h3>Anticipo</h3><p>"Algo viene": invitación a la lista de espera con el beneficio de comprar primero.</p></div>
+      <div class="step"><span class="k">Lunes 23 nov</span><h3>Acceso anticipado</h3><p>Solo para la lista. Correo y WhatsApp con el enlace y la hora de cierre.</p></div>
+      <div class="step"><span class="k">27 al 29 nov</span><h3>Lanzamiento</h3><p>Apertura para todos, recordatorio con lo más vendido y aviso de lo que se está agotando.</p></div>
+      <div class="step"><span class="k">Lunes 30 nov</span><h3>Última llamada</h3><p>Cyber Monday y cierre a medianoche. Suele ser de los correos que más venden.</p></div>
+    </div>
+    <p class="note" style="margin-top:3rem">Antes de enviar: revisar que estén activos los flujos de carrito abandonado, navegación abandonada y bienvenida. Redactamos y diseñamos cada correo; tú apruebas.</p>
+  </section>
+
+  <!-- 19 SEPARADOR 06 -->
+  <section class="slide dark center">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>06 · Después del viernes</p>
+    <h1 class="h1">El negocio está <b>en la segunda compra.</b></h1>
+    <p class="lead">Black Friday trae muchos clientes nuevos. Si compran una vez y no vuelven, pagaste caro por una sola venta.</p>
+  </section>
+
+  <!-- 20 RETENER -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Fidelización</p>
+    <h2 class="h2">Qué hacer con los clientes <b>que llegaron en Black Friday.</b></h2>
+    <div class="grid g3 push">
+      <div class="card"><span class="k">01</span><h3>Una buena entrega</h3><p>Avisos de envío, empaque cuidado y un mensaje de agradecimiento. La primera experiencia decide la segunda compra.</p></div>
+      <div class="card"><span class="k">02</span><h3>Flujo postcompra</h3><p>Cómo usar el producto, pedido de reseña y una recomendación según lo que compró.</p></div>
+      <div class="card"><span class="k">03</span><h3>Volver en diciembre</h3><p>Un beneficio para la siguiente compra con vigencia corta, conectado con los regalos de Navidad.</p></div>
+    </div>
+  </section>
+
+  <!-- 21 MEDIR CON ORBIT -->
+  <section class="slide dark">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Orbit · nuestra plataforma</p>
+    <h2 class="h2">Durante la Black Week <b>miramos los números en tiempo real.</b></h2>
+    <p class="lead">Orbit reúne las ventas de tu tienda y la inversión en pauta y se actualiza cada 3 minutos. Si algo se cae, lo vemos ese mismo día, no en el reporte del mes.</p>
+    <div class="grid g4 push">
+      <div class="card"><span class="k">01</span><h3>Ventas</h3><p>Por día y por hora, comparadas con la semana anterior.</p></div>
+      <div class="card"><span class="k">02</span><h3>Inversión y retorno</h3><p>Cuánto se invierte y cuánto vuelve en ventas.</p></div>
+      <div class="card"><span class="k">03</span><h3>Ticket promedio</h3><p>Si la oferta está subiendo el valor de cada compra.</p></div>
+      <div class="card"><span class="k">04</span><h3>Margen</h3><p>Lo que queda después del descuento, no solo lo que se vende.</p></div>
+    </div>
+  </section>
+
+  <!-- 22 ERRORES -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Errores comunes</p>
+    <h2 class="h2">Lo que vemos <b>cada año.</b></h2>
+    <ul class="list cols push">
+      <li><div>Empezar la semana del viernes<span>Sin audiencias calientes ni lista de espera, toda la venta depende de pauta cara.</span></div></li>
+      <li><div>Descontar sin hacer cuentas<span>Se vende mucho y se gana poco, o nada.</span></div></li>
+      <li><div>Cambiar precios a última hora<span>Errores en el carrito y códigos que no aplican el viernes en la mañana.</span></div></li>
+      <li><div>Quedarse sin inventario<span>La pauta sigue llevando gente a productos agotados.</span></div></li>
+      <li><div>Lanzar todo nuevo ese día<span>Campañas sin historial y creativos sin probar en la semana más costosa.</span></div></li>
+      <li><div>Olvidar a los clientes actuales<span>Los que ya compraron son los que más rápido vuelven a comprar.</span></div></li>
+    </ul>
+  </section>
+
+  <!-- 23 PLAN 5 SEMANAS -->
+  <section class="slide">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <p class="label"><span class="dot"></span>Tu plan</p>
+    <h2 class="h2">Qué hacer <b>esta semana y las siguientes.</b></h2>
+    <div class="steps s5 push">
+      <div class="step"><span class="k">Semana 1 · 26 oct</span><h3>Oferta</h3><p>Elegir el tipo de oferta, hacer las cuentas y revisar inventario.</p></div>
+      <div class="step"><span class="k">Semana 2 · 2 nov</span><h3>Piezas</h3><p>Creativos, banners y textos de correo listos para aprobar.</p></div>
+      <div class="step"><span class="k">Semana 3 · 9 nov</span><h3>Calentar</h3><p>Pauta de contenido y lista de espera abierta.</p></div>
+      <div class="step"><span class="k">Semana 4 · 16 nov</span><h3>Probar</h3><p>Tienda, descuentos, checkout y flujos revisados.</p></div>
+      <div class="step"><span class="k">Semana 5 · 23 nov</span><h3>Black Week</h3><p>Acceso anticipado, lanzamiento y Cyber Monday.</p></div>
+    </div>
+  </section>
+
+  <!-- 24 CIERRE -->
+  <section class="slide dark">
+    <div class="top"><div class="brand"><img src="assets/iso.png" alt="">LA REAL</div><div class="pagenum">Black Friday 2026 · <span class="n"></span></div></div>
+    <div class="grid split" style="grid-template-columns:1.2fr 1fr;gap:6rem;flex:1;align-items:center">
+      <div>
+        <div style="display:flex;align-items:center;gap:1rem"><img src="assets/juanfe-sm.jpg" alt="" style="width:4.5rem;height:4.5rem;border-radius:50%;object-fit:cover;filter:grayscale(1)"><span class="label"><span class="dot"></span>Te atiende Juanfe</span></div>
+        <h2 class="h2" style="margin-top:2.1rem;font-size:6rem"><b>Armemos tu Black Friday.</b> <span class="soft">Esta semana.</span></h2>
+        <p class="lead">Agenda una sesión con tu líder de cuenta: revisamos tus números, elegimos la oferta y dejamos el calendario de tu marca listo.</p>
+      </div>
+      <div>
+        <div style="border-top:2px solid rgba(243,241,237,.14)">
+          <div style="display:flex;justify-content:space-between;padding:1.5rem 0;border-bottom:2px solid rgba(243,241,237,.14)"><span class="label">Web</span><span style="font-size:1.75rem">landing.larealmarketing.com</span></div>
+          <div style="display:flex;justify-content:space-between;padding:1.5rem 0;border-bottom:2px solid rgba(243,241,237,.14)"><span class="label">Correo</span><span style="font-size:1.75rem">juanfe@larealmarketing.com</span></div>
+        </div>
+        <div class="pills"><span class="pill"><span class="dot"></span>Shopify Partner</span><span class="pill"><span class="dot"></span>Meta Partner</span><span class="pill">+11 años · +200 marcas</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+<nav class="nav" aria-label="Navegación"><button id="prev" aria-label="Anterior">←</button><span id="count"></span><button id="next" aria-label="Siguiente">→</button></nav>
+
+<script>
+// Equipo (oct 2026), intercalado hombre/mujer y con las caras alineadas. Quitar a quien no aplique.
+const TEAM = [
+  ['juanfe','Juanfe','Strategist Leader'], ['lau','Lau','Design Leader'],
+  ['santi','Santi','Trafficker Leader'], ['maria','María Paula','Shopify Expert'],
+  ['roa','Roa','Operations Leader'], ['mafe','Mafe','UGC Content Leader'],
+  ['juancho','Juanda','Growth Leader'], ['sofi','Sofi','Trafficker'],
+  ['vale','Vale','Loyalty Leader'],
+];
+// Marcas grandes del roster de la landing. NUNCA Kryolan ni ex-clientes. [archivo, escala, gris] · 'text' = sin logo
+const BRANDS = [
+  ['leonisa.png'],['sin-intermediarios.png',.85],['barba-roja.png',1.3],['natnack.svg',.45],['ciclico.png'],['ifw.png',.9],
+  ['dulcey.png',.75],['parchita.png',1.15],['estruendo.png',.45],['inducrayones.png',1.1,1],['adriza.svg',.95],['detalles-del-campo.png',1.25],
+  ['guuut.png',1.05],['once.png'],['moi.png',.6],['atratus.png',.85],['alegria-macarena.png',1.3],['zorro-jaguar.png',1.3],
+  ['duppla.png',1.2],['onside.png',.95],['gratu.png',.7],['bloki.png',.9],['enconfianza.png',1.5,1],['con-amor-mada.png',.5],
+];
+const $ = (id) => document.getElementById(id);
+if ($('team')) $('team').innerHTML = TEAM.map(([f,n,r]) => `<div class="member"><div class="ph"><img src="assets/team/${f}.jpg" alt="${n}"></div><b>${n}</b><span>${r}</span></div>`).join('');
+if ($('logos')) $('logos').innerHTML = BRANDS.map(([f,s,g]) => f === 'text'
+  ? `<div><span class="txt">${s}</span></div>`
+  : `<div><img src="assets/clientes/${f}" alt=""${g ? ' class="gray"' : ''}${s ? ` style="--s:${s}"` : ''}></div>`).join('');
+
+// Numeración y navegación (flechas, teclado, swipe). En móvil e impresión se ven todas.
+const slides = [...document.querySelectorAll('.slide')];
+slides.forEach((s, i) => { const n = s.querySelector('.pagenum .n'); if (n) n.textContent = String(i + 1).padStart(2, '0'); });
+let cur = Math.min(Math.max(parseInt(location.hash.slice(1)) - 1 || 0, 0), slides.length - 1);
+const show = (i) => {
+  cur = Math.min(Math.max(i, 0), slides.length - 1);
+  slides.forEach((s, j) => s.classList.toggle('active', j === cur));
+  $('count').textContent = `${cur + 1} / ${slides.length}`;
+  $('prev').disabled = cur === 0; $('next').disabled = cur === slides.length - 1;
+  $('progress').style.width = `${((cur + 1) / slides.length) * 100}%`;
+  history.replaceState(null, '', `#${cur + 1}`);
+  slides.forEach((s, j) => s.querySelectorAll('video').forEach(v => j === cur ? v.play().catch(() => {}) : v.pause()));
+};
+$('prev').onclick = () => show(cur - 1);
+$('next').onclick = () => show(cur + 1);
+addEventListener('keydown', (e) => {
+  if (['ArrowRight','PageDown',' '].includes(e.key)) { e.preventDefault(); show(cur + 1); }
+  if (['ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); show(cur - 1); }
+  if (e.key === 'Home') show(0); if (e.key === 'End') show(slides.length - 1);
+});
+let x0 = null;
+addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+addEventListener('touchend', (e) => { if (x0 === null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1)); x0 = null; });
+show(cur);
+</script>
+</body>
+</html>
